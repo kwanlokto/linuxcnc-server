@@ -31,10 +31,13 @@ c.mode(linuxcnc.MODE_MANUAL)
 c.wait_complete()
 c.teleop_enable(False)
 c.wait_complete()
+c.unhome(0)
 c.home(0)  # Home X axis
 wait_homed(0)
+c.unhome(1)
 c.home(1)  # Home Y axis
 wait_homed(1)
+c.unhome(2)
 c.home(2)  # Home Z axis
 wait_homed(2)
 # c.home(3)  # Home Y axis
