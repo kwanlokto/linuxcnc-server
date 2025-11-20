@@ -16,7 +16,7 @@ time.sleep(1)
 # Switch to MDI mode and send a command
 c.mode(linuxcnc.MODE_MDI)
 c.wait_complete()
-c.mdi("G0 X1 Y1 Z2")  # Move to coordinates
+c.mdi("G0 X1 Y1 Z0.1")  # Move to coordinates
 c.wait_complete()  # Wait for command to finish
 
 # Poll status and print positions

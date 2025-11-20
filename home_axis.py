@@ -1,6 +1,5 @@
 import linuxcnc
 import time
-from definitions import state_names
 
 # Connect to LinuxCNC
 c = linuxcnc.command()
@@ -38,6 +37,6 @@ c.home(1)  # Home Y axis
 wait_homed(1)
 c.home(2)  # Home Z axis
 wait_homed(2)
-c.home(3)  # Home Y axis
-wait_homed(3)
+# c.home(3)  # Home Y axis
+# wait_homed(3)
 
