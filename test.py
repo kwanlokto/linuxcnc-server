@@ -1,12 +1,6 @@
 import linuxcnc
 import time
-
-state_names = {
-    linuxcnc.STATE_ON: "STATE_ON",
-    linuxcnc.STATE_OFF: "STATE_OFF",
-    linuxcnc.STATE_ESTOP: "STATE_ESTOP",
-    linuxcnc.STATE_ESTOP_RESET: "STATE_ESTOP_RESET",
-}
+from definitions import state_names
 
 def print_state(task_state):
     return state_names.get(task_state, "UNKNOWN_STATE")
@@ -20,8 +14,16 @@ c.state(linuxcnc.STATE_ON)
 time.sleep(1)
 
 # Switch to MDI mode and send a command
+# c.mode(linuxcnc.MODE_MANUAL)
+# c.wait_complete()
+# c.home(0)
+# c.home(1)
+# c.home(2)
+
+# Switch to MDI mode and send a command
 c.mode(linuxcnc.MODE_MDI)
-c.mdi("G0 X10 Y5 Z2")  # Move to coordinates
+c.wait_complete()
+c.mdi("G0 X1 Y1 Z2")  # Move to coordinates
 c.wait_complete()      # Wait for command to finish
 
 # Poll status and print positions
