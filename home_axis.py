@@ -2,12 +2,26 @@ import linuxcnc
 import time
 from definitions import state_names
 
-def print_state(task_state):
-    return state_names.get(task_state, "UNKNOWN_STATE")
-
 # Connect to LinuxCNC
 c = linuxcnc.command()
 s = linuxcnc.stat()
+
+def wait_homed(joint):
+    s = linuxcnc.stat()
+    s.poll()
+    t = 0.0
+    i = 0
+    homed = s.joint[joint]["homed"]
+    while not homed:
+        time.sleep(0.1)
+        t = t + 0.1
+        i = i + 1
+        s.poll()
+        homed = s.joint[joint]["homed"]
+        if i == 10:
+            i = 0
+            print(f"Time: {t}. Joint {joint}. Homed: {homed}")
+
 
 # Make sure machine is ON
 c.state(linuxcnc.STATE_ON)
@@ -19,7 +33,11 @@ c.wait_complete()
 c.teleop_enable(False)
 c.wait_complete()
 c.home(0)  # Home X axis
+wait_homed(0)
 c.home(1)  # Home Y axis
+wait_homed(1)
 c.home(2)  # Home Z axis
+wait_homed(2)
 c.home(3)  # Home Y axis
+wait_homed(3)
 
