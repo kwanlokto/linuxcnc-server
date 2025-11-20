@@ -14,12 +14,12 @@ c.state(linuxcnc.STATE_ON)
 time.sleep(1)
 
 # Switch to MDI mode and send a command
-c.mode(linuxcnc.MODE_MANUAL)
+c.mode(linuxcnc.MODE_MDI)
 c.wait_complete()
-c.teleop_enable(False)
-c.wait_complete()
-c.home(0)  # Home X axis
-c.home(1)  # Home Y axis
-c.home(2)  # Home Z axis
-c.home(3)  # Home Y axis
+c.mdi("G0 X1 Y1 Z2")  # Move to coordinates
+c.wait_complete()  # Wait for command to finish
 
+# Poll status and print positions
+s.poll()
+print("Axis positions:", s.actual_position)  # X, Y, Z
+print("Machine state:", print_state(s.task_state))
