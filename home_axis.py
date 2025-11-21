@@ -40,6 +40,4 @@ wait_homed(1)
 c.unhome(2)
 c.home(2)  # Home Z axis
 wait_homed(2)
-# c.home(3)  # Home Y axis
-# wait_homed(3)
-
+c.mode(linuxcnc.MODE_AUTO)
