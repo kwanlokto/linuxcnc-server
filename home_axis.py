@@ -6,6 +6,7 @@ c = linuxcnc.command()
 s = linuxcnc.stat()
 
 def wait_homed(joint):
+    """Wait until the specified joint is homed."""
     s = linuxcnc.stat()
     s.poll()
     t = 0.0
@@ -22,15 +23,17 @@ def wait_homed(joint):
             print(f"Time: {t}. Joint {joint}. Homed: {homed}")
 
 
-# Make sure machine is ON
+# Come out of E-stop, turn the machine on, home, and switch to Auto mode.
+c.state(linuxcnc.STATE_ESTOP_RESET)
 c.state(linuxcnc.STATE_ON)
 time.sleep(1)
 
-# Switch to MDI mode and send a command
 c.mode(linuxcnc.MODE_MANUAL)
 c.wait_complete()
 c.teleop_enable(False)
 c.wait_complete()
+
+# Home each axis individually
 c.unhome(0)
 c.home(0)  # Home X axis
 wait_homed(0)
