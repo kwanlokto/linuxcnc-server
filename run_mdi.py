@@ -22,7 +22,7 @@ if ok_for_mdi():
     c.mode(linuxcnc.MODE_AUTO)
     # Load and run a test program
     c.program_open('test.ngc')
-    c.auto()
+    c.auto(linuxcnc.AUTO_RUN, 0)
 c.wait_complete()  # Wait for command to finish
 
 # Poll status and print positions
