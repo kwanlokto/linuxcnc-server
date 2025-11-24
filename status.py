@@ -40,3 +40,4 @@ resp = {
     ),
     "tool_in_spindle": s.tool_in_spindle,
 }
+print(resp)
