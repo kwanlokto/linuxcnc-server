@@ -34,13 +34,14 @@ c.teleop_enable(False)
 c.wait_complete()
 
 # Home each axis individually
+c.unhome(2)
+c.home(2)  # Home Z axis
+wait_homed(2)
 c.unhome(0)
 c.home(0)  # Home X axis
 wait_homed(0)
 c.unhome(1)
 c.home(1)  # Home Y axis
 wait_homed(1)
-c.unhome(2)
-c.home(2)  # Home Z axis
-wait_homed(2)
+
 c.mode(linuxcnc.MODE_AUTO)
