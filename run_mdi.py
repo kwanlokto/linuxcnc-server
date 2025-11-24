@@ -21,7 +21,7 @@ def ok_for_mdi():
 if ok_for_mdi():
     c.mode(linuxcnc.MODE_AUTO)
     # Load and run a test program
-    c.program_open('test.ngc')
+    c.program_open('/home/skatescribe/Desktop/linuxcnc-server/test.ngc')
     c.auto(linuxcnc.AUTO_RUN, 0)
 c.wait_complete()  # Wait for command to finish
 

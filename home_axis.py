@@ -32,7 +32,7 @@ c.mode(linuxcnc.MODE_MANUAL)
 c.wait_complete()
 c.teleop_enable(False)
 c.wait_complete()
-
+print(s.joint[1])
 # Home each axis individually
 c.unhome(2)
 c.home(2)  # Home Z axis
